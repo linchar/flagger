@@ -38,7 +38,6 @@ spec:
               containerPort: 9999
               protocol: TCP
           command:
-            - export
             - OTEL_RESOURCE_ATTRIBUTES=container.id=$(sed -rn "s/^.+\/.+\/.+\/.+\/(.+) \/sys\/fs\/cgroup\/devices.+$/\1/p" /proc/self/mountinfo) && ./podinfo
             - --port=9898
             - --port-metrics=9797
