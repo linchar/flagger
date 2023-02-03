@@ -40,7 +40,7 @@ spec:
           command: ["/bin/sh"]
           args:
             - -c
-            - 'OTEL_RESOURCE_ATTRIBUTES=container.id=$(sed -rn "s/^.+\/.+\/.+\/.+\/(.+) \/sys\/fs\/cgroup\/devices.+$/\1/p" /proc/self/mountinfo) && echo $OTEL_RESOURCE_ATTRIBUTES && ./podinfo'
+            - 'OTEL_RESOURCE_ATTRIBUTES=container.id=$(sed -rn "s/^.+\/.+\/.+\/.+\/(.+) \/sys\/fs\/cgroup\/devices.+$/\1/p" /proc/self/mountinfo) && echo $OTEL_RESOURCE_ATTRIBUTES && ./podinfo --otel-service-name=podinfo_backend'
             - --port=9898
             - --port-metrics=9797
             - --grpc-port=9999
@@ -48,7 +48,6 @@ spec:
             - --level=info
             - --random-delay=false
             - --random-error=false
-            - --otel-service-name=podinfo_backend
           env:
             - name: PODINFO_UI_COLOR
               value: "#34577c"
