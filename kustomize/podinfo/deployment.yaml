@@ -46,9 +46,12 @@ spec:
         - --level=info
         - --random-delay=false
         - --random-error=false
+        - --otel-service-name=podinfo_backend
         env:
         - name: PODINFO_UI_COLOR
           value: "#34577c"
+        - name: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
+              value: http://appdynamics-otel-collector-service.appdynamics.svc.cluster.local:4317
         livenessProbe:
           exec:
             command:
